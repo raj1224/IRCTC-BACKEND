@@ -1,4 +1,4 @@
-const { UnauthorizedError } = require('../utils/error');
+import { UnauthorizedError } from '../utils/error.js';
 
 /**
  * Extract user context from gateway headers
@@ -17,4 +17,4 @@ function getUserContext(req, res, next) {
      next();
 }
 
-module.exports = { getUserContext };
+export { getUserContext };

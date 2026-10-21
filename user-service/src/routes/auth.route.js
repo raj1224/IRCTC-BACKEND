@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const {sendOTP, verifyOTP, login, rotateRefreshToken, verifyGoogleIdToken} = require('../controllers/auth.controller');
+import {sendOTP, verifyOTP, login, rotateRefreshToken, verifyGoogleIdToken} from '../controllers/auth.controller.js';
 
 router.post("/send-otp", sendOTP);
 router.post("/verify-otp", verifyOTP);
 router.post("/login", login);
 router.post("/refresh", rotateRefreshToken);
 router.post("/google-auth", verifyGoogleIdToken);
-module.exports = router;
+export default router;

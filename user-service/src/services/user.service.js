@@ -1,7 +1,7 @@
-const { config } = require("../config");
-const {redis} = require("../config/redis");
-const prisma = require('../config/prisma');
-const logger = require('../config/logger');
+import { config } from "../config/index.js";
+import {redis} from "../config/redis.js";
+import prisma from '../config/prisma.js';
+import logger from '../config/logger.js';
 
 
 
@@ -27,4 +27,5 @@ const getProfile = async(userId) =>{
      return safeUser;
 }
 
-module.exports = {getProfile}
+const userService = { getProfile };
+export default userService;

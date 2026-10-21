@@ -1,6 +1,6 @@
-const { Kafka, logLevel } = require('kafkajs');
-const logger = require('./logger');
-const {config} = require('.');
+import { Kafka, logLevel } from 'kafkajs';
+import logger from './logger.js';
+import {config} from './index.js';
 const kafka = new Kafka({
      clientId: config.KAFKA_CLIENT_ID,
      brokers: [config.KAFKA_BROKER || 'localhost:9093'],
@@ -40,4 +40,4 @@ const disconnectProducer = async () => {
      }
 };
 
-module.exports = { kafka, producer, connectProducer, disconnectProducer };
+export { kafka, producer, connectProducer, disconnectProducer };

@@ -1,14 +1,14 @@
-const { ConflictError, BadRequestError, ForbiddenError, UnauthorizedError } = require("../utils/error")
-const {generateAndStoreOtp, verifyOtp} = require('../utils/otp');
-const {generateAccessToken, generateRefreshToken, verifyRefreshToken} = require('../utils/auth');
-const notificationProducer = require('../kafka/producer/notification.producer')
-const bcrypt = require('bcrypt');
-const prisma = require('../config/prisma');
-const {redis} = require('../config/redis');
-const { config } = require("../config");
-const logger = require('../config/logger');
-const jwt = require('jsonwebtoken');
-const {OAuth2Client} = require("google-auth-library");
+import { ConflictError, BadRequestError, ForbiddenError, UnauthorizedError } from "../utils/error.js";
+import {generateAndStoreOtp, verifyOtp} from '../utils/otp.js';
+import {generateAccessToken, generateRefreshToken, verifyRefreshToken} from '../utils/auth.js';
+import notificationProducer from '../kafka/producer/notification.producer.js';
+import bcrypt from 'bcrypt';
+import prisma from '../config/prisma.js';
+import {redis} from '../config/redis.js';
+import { config } from "../config/index.js";
+import logger from '../config/logger.js';
+import jwt from 'jsonwebtoken';
+import {OAuth2Client} from "google-auth-library";
 const client = new OAuth2Client(config.GOOGLE_CLIENT_ID);
 
 const sendOTP = async(firstName, lastName, email, password) =>{
@@ -169,4 +169,5 @@ const verifyGoogleIdToken = async(idToken, deviceId) =>{
      return {accessToken, refreshToken, loggedInUser: safeUser};
      
 }
-module.exports = {sendOTP, verifyOTP, login, rotateRefreshToken, verifyGoogleIdToken}
+const authService = { sendOTP, verifyOTP, login, rotateRefreshToken, verifyGoogleIdToken };
+export default authService;

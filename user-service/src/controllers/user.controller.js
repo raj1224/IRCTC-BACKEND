@@ -1,10 +1,10 @@
-const asyncHandler = require("../utils/asyncHandler");
-const { BadRequestError, NotFoundError } = require("../utils/error");
-const userService = require('../services/user.service');
-const logger = require("../config/logger");
+import asyncHandler from "../utils/asyncHandler.js";
+import { BadRequestError, NotFoundError } from "../utils/error.js";
+import userService from '../services/user.service.js';
+import logger from "../config/logger.js";
 
 
-exports.getProfile = asyncHandler(async(req, res) =>{
+export const getProfile = asyncHandler(async(req, res) =>{
      const userId = req.user.id;
      if(!userId){
           throw new BadRequestError("User Id is missing");
@@ -20,15 +20,15 @@ exports.getProfile = asyncHandler(async(req, res) =>{
      })
 })
 
-exports.updateProfile = asyncHandler(async(req, res) =>{
+export const updateProfile = asyncHandler(async(req, res) =>{
      // TODO TASK FOR YOU
 })
 
-exports.deleteProfile = asyncHandler(async(req, res) =>{
+export const deleteProfile = asyncHandler(async(req, res) =>{
      // TODO TASK FOR YOU
 })
 
-exports.getUserInternal = asyncHandler(async(req, res) =>{
+export const getUserInternal = asyncHandler(async(req, res) =>{
      const { userId } = req.params;
      if(!userId){
           throw new BadRequestError("User Id is missing");

@@ -1,7 +1,7 @@
-const express = require('express');
-const {getUserContext} = require('../middlewares/getUserContext.middleware');
-const { internalAuth } = require('../middlewares/internalAuth.middleware');
-const { getProfile, updateProfile, deleteProfile, getUserInternal } = require('../controllers/user.controller');
+import express from 'express';
+import {getUserContext} from '../middlewares/getUserContext.middleware.js';
+import { internalAuth } from '../middlewares/internalAuth.middleware.js';
+import { getProfile, updateProfile, deleteProfile, getUserInternal } from '../controllers/user.controller.js';
 
 const router = express.Router();
 
@@ -11,4 +11,4 @@ router.delete("/profile", getUserContext, deleteProfile);
 
 router.get("/internal/:userId", internalAuth, getUserInternal);
 
-module.exports = router;
+export default router;

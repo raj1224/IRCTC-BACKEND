@@ -1,6 +1,8 @@
-const Redis = require('ioredis');
-const {config} = require('.');
-const logger = require('./logger');
+// SINGLETON DESIGN PATTERN IMPLEMENTATION FOR REDIS CLIENT
+
+import Redis from 'ioredis';
+import {config} from './index.js';
+import logger from './logger.js';
 
 class RedisClient {
      static instance;
@@ -84,7 +86,5 @@ class RedisClient {
 
 // Export both the singleton instance and the class
 
-module.exports = {
-     redis: RedisClient.getInstance(),
-     RedisClient
-}
+export const redis = RedisClient.getInstance();
+export { RedisClient };

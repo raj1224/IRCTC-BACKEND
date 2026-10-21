@@ -1,8 +1,8 @@
-const { BadRequestError, UnauthorizedError } = require("../utils/error");
-const asyncHandler = require('../utils/asyncHandler');
-const {config} = require('../config');
-const authService = require('../services/auth.service');
-const getDeviceFingerprint = require("../utils/deviceFingerPrint");
+import { BadRequestError, UnauthorizedError } from "../utils/error.js";
+import asyncHandler from '../utils/asyncHandler.js';
+import {config} from '../config/index.js';
+import authService from '../services/auth.service.js';
+import getDeviceFingerprint from "../utils/deviceFingerprint.js";
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -13,7 +13,7 @@ const cookieOptions = (maxAge) => ({
      maxAge,
 });
 
-exports.sendOTP = asyncHandler(async(req, res) =>{
+export const sendOTP = asyncHandler(async(req, res) =>{
      const {firstName, lastName, email, password, confirmPassword} = req.body;
      if(!firstName || !lastName || !email || !password || !confirmPassword){
           throw new BadRequestError("All fields are mandatory");
@@ -30,7 +30,7 @@ exports.sendOTP = asyncHandler(async(req, res) =>{
      })
 })
 
-exports.verifyOTP = asyncHandler(async(req, res) =>{
+export const verifyOTP = asyncHandler(async(req, res) =>{
      const {otp} = req.body;
      const otpSessionId = req.cookies.otp_session;
 
@@ -48,7 +48,7 @@ exports.verifyOTP = asyncHandler(async(req, res) =>{
 })
 
 
-exports.login = asyncHandler(async(req, res) =>{
+export const login = asyncHandler(async(req, res) =>{
      const {email, password} = req.body;
      if(!email || !password){
           throw new BadRequestError("Email and Password are required")
@@ -64,7 +64,7 @@ exports.login = asyncHandler(async(req, res) =>{
      })
 })
 
-exports.rotateRefreshToken = asyncHandler(async(req, res) =>{
+export const rotateRefreshToken = asyncHandler(async(req, res) =>{
      const refreshToken = req.cookies.refreshToken;
      if(!refreshToken){
           throw new UnauthorizedError("Refresh token is missing", "LOGIN AGAIN")
@@ -80,7 +80,7 @@ exports.rotateRefreshToken = asyncHandler(async(req, res) =>{
 })
 
 
-exports.verifyGoogleIdToken = asyncHandler(async(req, res) =>{
+export const verifyGoogleIdToken = asyncHandler(async(req, res) =>{
      const {idToken} = req.body;
      if(!idToken){
           throw new BadRequestError("Invalid Google ID Token", "INVALID TOKEN")

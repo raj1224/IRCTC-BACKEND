@@ -1,8 +1,8 @@
-const { TooManyRequestsError } = require("./error");
-const {config} = require('../config');
-const {redis} = require('../config/redis');
-const otpGenerator = require('otp-generator');
-const crypto = require('crypto');
+import { TooManyRequestsError } from "./error.js";
+import {config} from '../config/index.js';
+import {redis} from '../config/redis.js';
+import otpGenerator from 'otp-generator';
+import crypto from 'crypto';
 
 const RATE_MAX = parseInt(config.OTP_RATE_MAX_PER_HOUR || '5', 10);
 const ATTEMPT_MAX = parseInt(config.OTP_MAX_VERIFY_ATTEMPTS || '5', 10);
@@ -64,4 +64,4 @@ async function verifyOtp(otp, otpSessionId){
      }
 }
 
-module.exports = {generateAndStoreOtp, verifyOtp};
+export { generateAndStoreOtp, verifyOtp };
