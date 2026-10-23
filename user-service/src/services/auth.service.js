@@ -22,9 +22,9 @@ const sendOTP = async(firstName, lastName, email, password) =>{
      const hashedPassword = await bcrypt.hash(password, 12);
      const meta = {firstName, lastName, email, hashedPassword};
      const {otp, otpSessionId} = await generateAndStoreOtp(meta);
-     await sendOtpEmail(email, otp);
-     // await notificationProducer.sendOtpEmail(email, otp, (config.OTP_TTL) / 60);
-     // logger.info(`OTP email queued for : ${email}`);
+     // await sendOtpEmail(email, otp);
+     await notificationProducer.sendOtpEmail(email, otp, (config.OTP_TTL) / 60);
+     logger.info(`OTP email queued for : ${email}`);
      return {otpSessionId}
 }
 

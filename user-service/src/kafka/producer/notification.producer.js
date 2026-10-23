@@ -2,7 +2,8 @@ import { producer, connectProducer } from '../../config/kafka.js';
 import logger from '../../config/logger.js';
 import { KAFKA_TOPICS } from '../../../../shared/constants/kafka-topics.js';
 
-class NotificationProducer {
+// SINGLETON METHOD
+class NotificationProducer { 
      constructor() {
           this.isInitialized = false;
      }
