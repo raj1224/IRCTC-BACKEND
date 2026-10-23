@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import { config } from './config/index.js';
 import logger from './config/logger.js';
 
-// import authRoutes from './routes/auth.route.js';
+import authRoutes from './routes/auth.route.js';
 // import userRoutes from './routes/user.route.js';
 
 // IMPORT MIDDLEWARES
@@ -24,7 +24,7 @@ app.use(helmet({
 app.use(reqLogger);
 app.use(express.json());
 app.use(cookieParser());
-// app.use("/auth", authRoutes);
+app.use("/auth", authRoutes);
 // app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
