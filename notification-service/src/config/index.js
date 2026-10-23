@@ -1,3 +1,5 @@
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
 const config = {
      SERVICE_NAME: require('../../package.json').name,
      PORT: Number(process.env.PORT) || 4004,
@@ -10,4 +12,4 @@ const config = {
      MAIL_SEND: process.env.MAIL_SEND,
      FRONTEND_URL: process.env.FRONTEND_URL
 }
-module.exports = { config };
+export { config };

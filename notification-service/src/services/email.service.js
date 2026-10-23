@@ -1,14 +1,14 @@
-const sgMail = require('@sendgrid/mail');
-const logger = require('../config/logger');
-const { config } = require('../config');
-const {
+import sgMail from '@sendgrid/mail';
+import logger from '../config/logger.js';
+import { config } from '../config/index.js';
+import {
      getOtpTemplate,
      getWelcomeTemplate,
      getTicketConfirmationTemplate,
      getBookingConfirmedTemplate,
      getBookingFailedTemplate,
      getBookingCancelledTemplate,
-} = require('../templates');
+} from '../templates/index.js';
 
 sgMail.setApiKey(config.SENDGRID_API_KEY);
 
@@ -99,4 +99,4 @@ class EmailService {
      }
 }
 
-module.exports = new EmailService();
+export default new EmailService();

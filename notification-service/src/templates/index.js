@@ -1,4 +1,4 @@
-const {config} = require('../config');
+import {config} from '../config/index.js';
 function getOtpTemplate(otp, ttlMinutes) {
   return `
     <div style="
@@ -348,7 +348,7 @@ function getBookingCancelledTemplate(data) {
   `;
 }
 
-module.exports = {
+export {
   getOtpTemplate,
   getWelcomeTemplate,
   getTicketConfirmationTemplate,

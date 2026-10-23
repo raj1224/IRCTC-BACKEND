@@ -1,6 +1,6 @@
-require('dotenv').config();
-const emailConsumer = require('./kafka/consumer/email.consumer');
-const logger = require('./config/logger');
+import 'dotenv/config';
+import emailConsumer from './kafka/consumer/email.consumer.js';
+import logger from './config/logger.js';
 async function startNotificationService() {
      try {
           logger.info('Starting Notification Service...');
