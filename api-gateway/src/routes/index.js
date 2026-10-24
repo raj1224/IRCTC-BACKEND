@@ -1,8 +1,8 @@
-const express = require('express');
-const { requireAuth } = require('../middlewares/auth.middleware');
-const { createProxy, getCircuitBreakerStatus } = require('../services/proxy');
-const { ipRateLimit, endpointRateLimit, combinedRateLimit } = require('../middlewares/rateLimiting.middleware')
-const { config } = require('../config');
+import express from 'express';
+import { requireAuth } from '../middlewares/auth.middleware.js';
+import { createProxy, getCircuitBreakerStatus } from '../services/proxy.js';
+import { ipRateLimit, endpointRateLimit, combinedRateLimit } from '../middlewares/rateLimiting.middleware.js';
+import { config } from '../config/index.js';
 
 const router = express.Router();
 
@@ -230,4 +230,4 @@ router.get('/gateway/circuit-breakers', (req, res) => {
      });
 });
 
-module.exports = router;
+export default router;

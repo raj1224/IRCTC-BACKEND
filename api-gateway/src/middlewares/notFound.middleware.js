@@ -1,7 +1,7 @@
-const { NotFoundError } = require('../utils/error');
+import { NotFoundError } from '../utils/error.js';
 
 function notFound(req, res, next) {
   next(new NotFoundError(`Route ${req.method} ${req.path} not found`));
 }
 
-module.exports = { notFound };
+export { notFound };

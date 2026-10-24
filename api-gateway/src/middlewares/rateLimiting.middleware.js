@@ -1,7 +1,7 @@
-const { redis } = require('../config/redis');
-const { config } = require('../config');
-const { TooManyRequestsError } = require('../utils/error');
-const logger = require('../config/logger');
+import { redis } from '../config/redis.js';
+import { config } from '../config/index.js';
+import { TooManyRequestsError } from '../utils/error.js';
+import logger from '../config/logger.js';
 
 /**
  * Rate limiting strategies:
@@ -186,7 +186,7 @@ function combinedRateLimit(ipOptions = {}, userOptions = {}) {
      };
 }
 
-module.exports = {
+export {
      ipRateLimit,
      userRateLimit,
      endpointRateLimit,

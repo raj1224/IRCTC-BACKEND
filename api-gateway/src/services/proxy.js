@@ -1,7 +1,7 @@
-const axios = require('axios');
-const { config } = require('../config');
-const { ServiceUnavailableError, GatewayTimeoutError } = require('../utils/error');
-const logger = require('../config/logger');
+import axios from 'axios';
+import { config } from '../config/index.js';
+import { ServiceUnavailableError, GatewayTimeoutError } from '../utils/error.js';
+import logger from '../config/logger.js';
 
 /**
  * Circuit Breaker implementation
@@ -224,7 +224,7 @@ function getCircuitBreakerStatus() {
      return Object.values(circuitBreakers).map((cb) => cb.getState());
 }
 
-module.exports = {
+export {
      createProxy,
      CircuitBreaker,
      circuitBreakers,

@@ -1,9 +1,9 @@
 // middlewares/error.middleware.js
-const { AppError } = require('../utils/error');
-const {config} = require('../config');
-const logger = require('../config/logger');
+import { AppError } from '../utils/error.js';
+import {config} from '../config/index.js';
+import logger from '../config/logger.js';
 
-module.exports = (err, req, res, next) => {
+const errorHandler = (err, req, res, next) => {
      if (err instanceof AppError) {
           return res.status(err.statusCode).json({
                success: false,
@@ -30,3 +30,5 @@ module.exports = (err, req, res, next) => {
           message: "Internal Server Error"
      });
 };
+
+export default errorHandler;
