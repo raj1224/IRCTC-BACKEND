@@ -20,12 +20,12 @@ const consumer = kafka.consumer({
 });
 
 // Producer (used only for DLQ publishing)
-const producer = kafka.producer({
-     allowAutoTopicCreation: true,
-     retry: { retries: 3 },
-});
+// const producer = kafka.producer({
+//      allowAutoTopicCreation: true,
+//      retry: { retries: 3 },
+// });
 
-let isProducerConnected = false;
+// let isProducerConnected = false;
 
 const connectProducer = async () => {
      if (!isProducerConnected) {
@@ -49,4 +49,4 @@ const shutdown = async () => {
 process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
 
-export { kafka, consumer, producer, connectProducer };
+export { kafka, consumer, connectProducer };

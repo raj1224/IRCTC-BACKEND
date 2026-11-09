@@ -2,6 +2,7 @@ import { ConflictError, BadRequestError, ForbiddenError, UnauthorizedError } fro
 import {generateAndStoreOtp, verifyOtp} from '../utils/otp.js';
 import {generateAccessToken, generateRefreshToken, verifyRefreshToken} from '../utils/auth.js';
 import notificationProducer from '../kafka/producer/notification.producer.js';
+import emailService from '../utils/email.js';
 import bcrypt from 'bcrypt';
 import prisma from '../config/prisma.js';
 import {redis} from '../config/redis.js';

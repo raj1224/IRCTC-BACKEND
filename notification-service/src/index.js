@@ -11,7 +11,7 @@ async function startNotificationService() {
           if (missing.length > 0) {
                throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
           }
-
+          // start eamil consumer
           await emailConsumer.start();
 
           logger.info('✅ Notification Service started successfully');

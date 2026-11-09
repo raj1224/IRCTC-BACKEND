@@ -34,6 +34,7 @@ class EmailService {
                });
 
                if (retries < this.maxRetries - 1) {
+                    // exponential backoff before retrying:1s, 2s, 4s
                     const delay = Math.pow(2, retries) * 1000;
                     await new Promise(resolve => setTimeout(resolve, delay));
                     return this.sendWithRetry(msg, retries + 1);

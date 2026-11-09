@@ -1,4 +1,4 @@
-import { consumer, producer, connectProducer } from '../../config/kafka.js';
+import { consumer, connectProducer } from '../../config/kafka.js';
 import emailService from '../../services/email.service.js';
 import logger from '../../config/logger.js';
 import { KAFKA_TOPICS } from '../../../../shared/constants/kafka-topics.js';
@@ -8,7 +8,7 @@ class EmailConsumer {
      async start() {
           try {
                await consumer.connect();
-               await connectProducer(); // needed for DLQ publishing
+               // await connectProducer(); // needed for DLQ publishing
                logger.info('Email consumer connected to Kafka');
 
                await consumer.subscribe({
@@ -16,16 +16,58 @@ class EmailConsumer {
                     fromBeginning: false
                });
 
-               await consumer.run({
-                    eachMessage: withDLQ(producer, KAFKA_TOPICS.DLQ_NOTIFICATION, logger, async ({ topic, parsedValue }) => {
-                         logger.info(`Processing message from topic: ${topic}`);
-                         await this.handleMessage(topic, parsedValue);
-                    }),
-               });
+               // await consumer.run({
+               //      eachMessage: withDLQ(producer, KAFKA_TOPICS.DLQ_NOTIFICATION, logger, async ({ topic, parsedValue }) => {
+               //           logger.info(`Processing message from topic: ${topic}`);
+               //           await this.handleMessage(topic, parsedValue);
+               //      }),
+               // });
+               
+await consumer.run({
+    eachMessage: async ({ topic, partition, message }) => {
+        try {
+            logger.info(`Processing message from topic: ${topic}`);
+
+            // Kafka message buffer ko string mein convert karo
+            const rawValue = message.value?.toString();
+
+            if (!rawValue) {
+                throw new Error("Kafka message value is empty");
+            }
+
+            // JSON string ko JavaScript object mein convert karo
+            const parsedValue = JSON.parse(rawValue);
+
+            logger.info("Kafka message received", {
+                topic,
+                partition,
+                offset: message.offset,
+            });
+
+            await this.handleMessage(topic, parsedValue);
+
+        } catch (error) {
+            logger.error("Failed to process Kafka message", {
+                topic,
+                partition,
+                offset: message.offset,
+                error: error.message,
+                stack: error.stack,
+            });
+
+            throw error;
+        }
+    },
+});
+
 
                logger.info('Email consumer is running and listening for messages...');
           } catch (error) {
-               logger.error('Failed to start email consumer', { error: error.message });
+               logger.error("Failed to start email consumer", {
+        message: error.message,
+        stack: error.stack,
+        name: error.name,
+    });
                throw error;
           }
      }

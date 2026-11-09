@@ -15,7 +15,7 @@ const kafka = new Kafka({
 const producer = kafka.producer({
      allowAutoTopicCreation: true,
      transactionTimeout: 30000,
-     idempotent: true, 
+     idempotent: true,  // ensures exactly-once delivery semantics
      maxInFlightRequests: 5,
      retry: {
           retries: 5,

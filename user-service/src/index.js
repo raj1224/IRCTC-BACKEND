@@ -1,11 +1,11 @@
-// import 'dotenv/config';
+import 'dotenv/config';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { config } from './config/index.js';
 import logger from './config/logger.js';
 
-// import authRoutes from './routes/auth.route.js';
+import authRoutes from './routes/auth.route.js';
 // import userRoutes from './routes/user.route.js';
 
 // IMPORT MIDDLEWARES
@@ -24,7 +24,7 @@ app.use(helmet({
 app.use(reqLogger);
 app.use(express.json());
 app.use(cookieParser());
-// app.use("/auth", authRoutes);
+app.use("/api/v1/auth", authRoutes);
 // app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
@@ -47,18 +47,18 @@ const startServer = async () => {
                );
           })
           // Graceful shutdown
-          // const shutdown = async () => {
-          //      logger.info('Shutting down gracefully...');
+          const shutdown = async () => {
+               logger.info('Shutting down gracefully...');
 
-          //      server.close(async () => {
-          //           await disconnectProducer();
-          //           logger.info('Server closed');
-          //           process.exit(0);
-          //      });
-          // };
+               server.close(async () => {
+                    await disconnectProducer();
+                    logger.info('Server closed');
+                    process.exit(0);
+               });
+          };
 
-          // process.on('SIGTERM', shutdown);
-          // process.on('SIGINT', shutdown);
+          process.on('SIGTERM', shutdown);
+          process.on('SIGINT', shutdown);
      } catch (error) {
           logger.error("Failed to Start Server", error);
           process.exit(1);
