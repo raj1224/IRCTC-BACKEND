@@ -1,4 +1,5 @@
 // SINGLETON DESIGN PATTERN IMPLEMENTATION FOR PRISMA CLIENT
+// why singleton? because we want to have a single instance of Prisma client throughout the application to avoid multiple connections and manage resources efficiently.
 
 import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';

@@ -1,4 +1,5 @@
 // SINGLETON DESIGN PATTERN IMPLEMENTATION FOR REDIS CLIENT
+// why singleton? because we want to have a single instance of Redis client throughout the application to avoid multiple connections and manage resources efficiently.
 
 import Redis from 'ioredis';
 import {config} from './index.js';
