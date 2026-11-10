@@ -25,7 +25,7 @@ app.use(reqLogger);
 app.use(express.json());
 app.use(cookieParser());
 app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
+app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
      res.send("Hello from index.js of user-service");
