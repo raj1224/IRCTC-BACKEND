@@ -1,19 +1,19 @@
-require('dotenv').config();
-const path = require('path');
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const helmet = require('helmet');
-const { config } = require('./config');
-const logger = require('./config/logger');
-const { initIndices, recreateIndices } = require('./config/elasticsearch');
+import 'dotenv/config';
+import path from 'path';
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
+import { config } from './config/index.js';
+import logger from './config/logger.js';
+import { initIndices, recreateIndices } from './config/elasticsearch.js';
 
-const { corsMiddleware } = require('./middlewares/cors.middleware');
-const errorHandler = require('./middlewares/error.middleware');
-const { reqLogger } = require('./middlewares/req.middleware');
+import { corsMiddleware } from './middlewares/cors.middleware';
+import errorHandler from './middlewares/error.middleware';
+import { reqLogger } from './middlewares/req.middleware';
 
-const searchRoutes = require('./routes/search.route');
-const searchConsumer = require('./kafka/consumer/search.consumer');
-const { disconnectAll } = require('./config/kafka');
+import searchRoutes from './routes/search.route';
+import searchConsumer from './kafka/consumer/search.consumer';
+import { disconnectAll } from './config/kafka.js';
 
 const app = express();
 

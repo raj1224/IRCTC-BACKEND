@@ -1,6 +1,7 @@
 import express from 'express';
 import {getUserContext} from '../middlewares/getUserContext.middleware.js';
 import { internalAuth } from '../middlewares/internalAuth.middleware.js';
+// import { requireAuth } from '../middlewares/requireAuth.middleware.js';
 import { getProfile, updateProfile, deleteProfile, getUserInternal } from '../controllers/user.controller.js';
 
 const router = express.Router();

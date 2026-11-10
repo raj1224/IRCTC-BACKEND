@@ -1,6 +1,6 @@
-const { producer, connectProducer } = require('../../config/kafka');
-const logger = require('../../config/logger');
-const { KAFKA_TOPICS } = require('../../../../shared/constants/kafka-topics');
+import { producer, connectProducer } from '../../config/kafka.js';
+import logger from '../../config/logger.js';
+import { KAFKA_TOPICS } from '../../../../shared/constants/kafka-topics.js';
 
 class AdminProducer {
      constructor() { this.isInitialized = false; }
@@ -80,4 +80,4 @@ class AdminProducer {
      }
 }
 
-module.exports = new AdminProducer();
+export default new AdminProducer();

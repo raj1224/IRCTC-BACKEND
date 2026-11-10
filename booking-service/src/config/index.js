@@ -1,3 +1,5 @@
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
 const config = {
      PORT: Number(process.env.PORT) || 4005,
      SERVICE_NAME: require('../../package.json').name,
@@ -28,4 +30,4 @@ const config = {
      STUCK_BOOKING_THRESHOLD_MS: parseInt(process.env.STUCK_BOOKING_THRESHOLD_MS || '120000', 10),
 }
 
-module.exports = { config };
+export default { config };

@@ -1,4 +1,4 @@
-const logger = require('../config/logger');
+import logger from '../config/logger.js';
 
 async function retryTransaction(fn, maxRetries = 3) {
      for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -22,4 +22,4 @@ async function retryTransaction(fn, maxRetries = 3) {
      }
 }
 
-module.exports = { retryTransaction };
+export default { retryTransaction };

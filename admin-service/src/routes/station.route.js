@@ -1,8 +1,8 @@
-const express = require('express');
-const { createStation, updateStation, deleteStation, getAllStations, getStationById, getStationByIdInternal } = require('../controllers/station.controller');
+import express from 'express';
+import { createStation, updateStation, deleteStation, getAllStations, getStationById, getStationByIdInternal } from '../controllers/station.controller';
 
-const {getUserContext} = require('../middlewares/getUserContext.middleware');
-const { internalAuth } = require('../middlewares/internalAuth.middleware');
+import {getUserContext} from '../middlewares/getUserContext.middleware';
+import { internalAuth } from '../middlewares/internalAuth.middleware';
 
 const router = express.Router();
 
@@ -12,4 +12,4 @@ router.get("/station", getUserContext, getAllStations);
 router.get("/station/:stationId", getUserContext, getStationById);
 router.post("/station", getUserContext, createStation);
 
-module.exports = router;
+export default router;

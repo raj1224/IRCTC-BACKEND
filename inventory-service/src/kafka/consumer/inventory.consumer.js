@@ -1,8 +1,8 @@
-const { consumer, producer, connectProducer } = require('../../config/kafka');
-const logger = require('../../config/logger');
-const { KAFKA_TOPICS } = require('../../../../shared/constants/kafka-topics');
-const { withDLQ } = require('../../../../shared/utils/dlqHandler');
-const inventoryService = require('../../services/inventory.service');
+import { consumer, producer, connectProducer } from '../../config/kafka.js';
+import logger from '../../config/logger.js';
+import { KAFKA_TOPICS } from '../../../../shared/constants/kafka-topics.js';
+import { withDLQ } from '../../../../shared/utils/dlqHandler.js';
+import inventoryService from '../../services/inventory.service';
 
 class InventoryConsumer {
      async start() {
@@ -44,4 +44,4 @@ class InventoryConsumer {
      }
 }
 
-module.exports = new InventoryConsumer();
+export default new InventoryConsumer();

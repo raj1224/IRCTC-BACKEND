@@ -1,9 +1,9 @@
-const asyncHandler = require("../utils/asyncHandler");
-const { BadRequestError } = require('../utils/error')
-const stationService = require('../services/station.service');
+import asyncHandler from '../utils/asyncHandler.js';
+import { BadRequestError } from '../utils/error.js';
+import stationService from '../services/station.service';
 
 
-exports.createStation = asyncHandler(async (req, res) => {
+export const createStation = asyncHandler(async (req, res) => {
      const { name, code, city, state } = req.body;
 
      if (!name || !code || !city || !state) {
@@ -25,7 +25,7 @@ exports.createStation = asyncHandler(async (req, res) => {
 })
 
 
-exports.getAllStations = asyncHandler(async (req, res) => {
+export const getAllStations = asyncHandler(async (req, res) => {
      const page = parseInt(req.query.page) || 1;
      const limit = parseInt(req.query.limit) || 50;
      const search = req.query.search;
@@ -44,7 +44,7 @@ exports.getAllStations = asyncHandler(async (req, res) => {
      });
 });
 
-exports.getStationById = asyncHandler(async (req, res) => {
+export const getStationById = asyncHandler(async (req, res) => {
      const { stationId } = req.params;
      if(!stationId){
           throw new BadRequestError("Station Id is missing");
@@ -57,7 +57,7 @@ exports.getStationById = asyncHandler(async (req, res) => {
      });
 });
 
-exports.getStationByIdInternal = asyncHandler(async (req, res) => {
+export const getStationByIdInternal = asyncHandler(async (req, res) => {
      const { stationId } = req.params;
      if(!stationId){
           throw new BadRequestError("Station Id is missing");

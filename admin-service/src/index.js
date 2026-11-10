@@ -1,19 +1,19 @@
-require('dotenv').config();
-const express = require('express');
-const helmet = require('helmet');
-const logger = require('./config/logger');
-const { config } = require('./config');
-const cookieParser = require('cookie-parser');
+import 'dotenv/config';
+import express from 'express';
+import helmet from 'helmet';
+import logger from './config/logger.js';
+import { config } from './config/index.js';
+import cookieParser from 'cookie-parser';
 // Routes
-const stationRoutes = require('./routes/station.route');
-const trainRoutes = require('./routes/train.route');
-const scheduleRoutes = require('./routes/schedule.route');
+import stationRoutes from './routes/station.route';
+import trainRoutes from './routes/train.route';
+import scheduleRoutes from './routes/schedule.route';
 
 // Middlewares
-const { corsMiddleware } = require('./middlewares/cors.middleware');
-const errorHandler = require('./middlewares/error.middleware');
-const { reqLogger } = require('./middlewares/req.middleware');
-const { disconnectProducer } = require('./config/kafka');
+import { corsMiddleware } from './middlewares/cors.middleware';
+import errorHandler from './middlewares/error.middleware';
+import { reqLogger } from './middlewares/req.middleware';
+import { disconnectProducer } from './config/kafka.js';
 
 const app = express();
 
@@ -87,4 +87,4 @@ const startServer = async () => {
 
 startServer();
 
-module.exports = app;
+export default app;

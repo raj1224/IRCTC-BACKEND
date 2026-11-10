@@ -1,5 +1,5 @@
-const winston = require('winston');
-const { config } = require('./index');
+import winston from 'winston';
+import { config } from './index.js';
 
 const logFormat = winston.format.combine(
      winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
@@ -30,4 +30,4 @@ const logger = winston.createLogger({
      ]
 });
 
-module.exports = logger;
+export default logger;

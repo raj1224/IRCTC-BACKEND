@@ -1,5 +1,5 @@
-const prisma = require('../config/prisma');
-const logger = require('../config/logger');
+import prisma from '../config/prisma.js';
+import logger from '../config/logger.js';
 
 /**
  * Idempotency wrapper for mutating inventory operations.
@@ -63,4 +63,4 @@ const recordIdempotency = async (tx, eventKey, response) => {
      await tx.idempotencyRecord.create({ data: { eventKey, response } });
 };
 
-module.exports = { withIdempotency, recordIdempotency };
+export default { withIdempotency, recordIdempotency };

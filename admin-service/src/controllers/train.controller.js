@@ -1,9 +1,9 @@
-const asyncHandler = require("../utils/asyncHandler");
-const { BadRequestError } = require("../utils/error");
-const trainService = require('../services/train.service');
+import asyncHandler from '../utils/asyncHandler.js';
+import { BadRequestError } from '../utils/error.js';
+import trainService from '../services/train.service';
 
 
-exports.createTrain = asyncHandler(async(req, res) =>{
+export const createTrain = asyncHandler(async(req, res) =>{
      const {trainNumber, trainName, coachName, seats} = req.body;
 
      if(!trainNumber || !trainName || !coachName || !seats){
@@ -22,7 +22,7 @@ exports.createTrain = asyncHandler(async(req, res) =>{
      })
 })
 
-exports.createRoute = asyncHandler(async(req, res) =>{
+export const createRoute = asyncHandler(async(req, res) =>{
      const {trainId, stations} = req.body;
      if(!trainId || !stations){
           throw new BadRequestError("Train Id and stations are required");
@@ -40,7 +40,7 @@ exports.createRoute = asyncHandler(async(req, res) =>{
      });
 });
 
-exports.getAllTrains = asyncHandler(async(req, res) =>{
+export const getAllTrains = asyncHandler(async(req, res) =>{
      const trains = await trainService.getAllTrains();
      return res.status(200).json({
           success: true,
@@ -48,7 +48,7 @@ exports.getAllTrains = asyncHandler(async(req, res) =>{
      })
 })
 
-exports.getTrainById = asyncHandler(async(req, res) =>{
+export const getTrainById = asyncHandler(async(req, res) =>{
      const {trainId} = req.params;
      if(!trainId){
           throw new BadRequestError("Train Id is missing");

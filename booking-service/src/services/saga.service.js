@@ -1,7 +1,7 @@
-const prisma = require('../config/prisma');
-const logger = require('../config/logger');
-const { inventoryClient } = require('./inventoryClient');
-const { paymentClient } = require('./paymentClient');
+import prisma from '../config/prisma.js';
+import logger from '../config/logger.js';
+import { inventoryClient } from './inventoryClient.js';
+import { paymentClient } from './paymentClient.js';
 
 /**
  * Saga orchestrator for booking lifecycle.
@@ -229,7 +229,7 @@ async function compensateAll(booking, seatIds) {
      }
 }
 
-module.exports = {
+export default {
      executeHoldSeats,
      executeCreatePayment,
      executeConfirmSeats,

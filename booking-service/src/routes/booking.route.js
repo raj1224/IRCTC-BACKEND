@@ -1,12 +1,12 @@
-const express = require('express');
-const { getUserContext } = require('../middlewares/getUserContext.middleware');
-const {
+import express from 'express';
+import { getUserContext } from '../middlewares/getUserContext.middleware';
+import {
      createBooking,
      getBooking,
      getUserBookings,
      cancelBooking,
      verifyPayment,
-} = require('../controllers/booking.controller');
+} from '../controllers/booking.controller';
 
 const router = express.Router();
 
@@ -17,4 +17,4 @@ router.get('/bookings/:bookingId', getUserContext, getBooking);
 router.post('/bookings/:bookingId/verify-payment', getUserContext, verifyPayment);
 router.post('/bookings/:bookingId/cancel', getUserContext, cancelBooking);
 
-module.exports = router;
+export default router;

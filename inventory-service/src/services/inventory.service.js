@@ -1,10 +1,10 @@
-const prisma = require('../config/prisma');
-const logger = require('../config/logger');
-const inventoryProducer = require('../kafka/producer/inventory.producer');
-const { retryTransaction } = require('../utils/retryTransaction');
-const { withIdempotency, recordIdempotency } = require('../utils/idempotency');
-const { BadRequestError, NotFoundError, ConflictError, ForbiddenError } = require('../utils/error');
-const { config } = require('../config');
+import prisma from '../config/prisma.js';
+import logger from '../config/logger.js';
+import inventoryProducer from '../kafka/producer/inventory.producer';
+import { retryTransaction } from '../utils/retryTransaction.js';
+import { withIdempotency, recordIdempotency } from '../utils/idempotency.js';
+import { BadRequestError, NotFoundError, ConflictError, ForbiddenError } from '../utils/error.js';
+import { config } from '../config/index.js';
 
 // ─── Kafka Event Handlers ───────────────────────────────────────────────────
 
@@ -851,7 +851,7 @@ const recountAndPublish = async (scheduleId) => {
      return { available, locked, booked };
 };
 
-module.exports = {
+export default {
      initializeInventory,
      cancelScheduleInventory,
      getAvailability,

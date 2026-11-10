@@ -1,7 +1,7 @@
-const { BadRequestError, ConflictError, NotFoundError } = require('../utils/error');
-const adminProducer = require('../kafka/producer/admin.producer');
-const logger = require('../config/logger');
-const prisma = require('../config/prisma');
+import { BadRequestError, ConflictError, NotFoundError } from '../utils/error.js';
+import adminProducer from '../kafka/producer/admin.producer';
+import logger from '../config/logger.js';
+import prisma from '../config/prisma.js';
 
 const createSchedule = async (data) => {
      const { trainId, departureDate } = data;
@@ -115,4 +115,4 @@ const cancelSchedule = async (scheduleId) => {
      return updated;
 };
 
-module.exports = { createSchedule, getAllSchedules, cancelSchedule };
+export default { createSchedule, getAllSchedules, cancelSchedule };

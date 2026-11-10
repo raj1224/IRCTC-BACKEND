@@ -1,6 +1,6 @@
-const { PrismaClient } = require('@prisma/client');
-const { PrismaPg } = require('@prisma/adapter-pg');
-const { config } = require('./');
+import { PrismaClient } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { config } from './index.js';
 const connectionString = config.DATABASE_URL;
 
 const globalForPrisma = global;
@@ -16,4 +16,4 @@ if (!globalForPrisma.prisma) {
 
 const prisma = globalForPrisma.prisma;
 
-module.exports = prisma;
+export default prisma;

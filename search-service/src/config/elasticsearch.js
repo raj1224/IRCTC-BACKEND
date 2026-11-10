@@ -1,6 +1,6 @@
-const { Client } = require('@elastic/elasticsearch');
-const { config } = require('.');
-const logger = require('./logger');
+import { Client } from '@elastic/elasticsearch';
+import { config } from './index.js';
+import logger from './logger.js';
 
 const esClient = new Client({ node: config.ELASTICSEARCH_URL });
 
@@ -120,4 +120,4 @@ const recreateIndices = async () => {
      logger.info('All indices recreated');
 };
 
-module.exports = { esClient, STATION_INDEX, TRAIN_INDEX, ROUTE_INDEX, SCHEDULE_INDEX, initIndices, recreateIndices };
+export default { esClient, STATION_INDEX, TRAIN_INDEX, ROUTE_INDEX, SCHEDULE_INDEX, initIndices, recreateIndices };

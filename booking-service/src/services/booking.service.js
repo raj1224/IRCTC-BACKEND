@@ -1,14 +1,14 @@
-const prisma = require('../config/prisma');
-const logger = require('../config/logger');
-const { config } = require('../config');
-const { inventoryClient, extractError: extractInventoryError } = require('./inventoryClient');
-const { paymentClient, extractError: extractPaymentError } = require('./paymentClient');
-const { userClient } = require('./userClient');
-const { stationClient } = require('./stationClient');
-const { acquireSeatLocks, releaseSeatLocks, forceReleaseSeatLocks } = require('../utils/distributedLock');
-const saga = require('./saga.service');
-const bookingProducer = require('../kafka/producer/booking.producer');
-const { BadRequestError, NotFoundError, ConflictError, StaleStateError } = require('../utils/error');
+import prisma from '../config/prisma.js';
+import logger from '../config/logger.js';
+import { config } from '../config/index.js';
+import { inventoryClient, extractError as extractInventoryError } from './inventoryClient.js';
+import { paymentClient, extractError as extractPaymentError } from './paymentClient.js';
+import { userClient } from './userClient.js';
+import { stationClient } from './stationClient.js';
+import { acquireSeatLocks, releaseSeatLocks, forceReleaseSeatLocks } from '../utils/distributedLock.js';
+import saga from './saga.service';
+import bookingProducer from '../kafka/producer/booking.producer';
+import { BadRequestError, NotFoundError, ConflictError, StaleStateError } from '../utils/error.js';
 
 // ─── Optimistic Lock Helper (CAS — Compare-And-Swap) ────────────────────────
 // Atomically updates booking status ONLY IF the version hasn't changed since read.
@@ -1263,7 +1263,7 @@ const recoverStuckBooking = async (booking) => {
      if (booking.status === 'CANCELLING') return recoverCancelling(booking, seatIds);
 };
 
-module.exports = {
+export default {
      createBooking,
      handlePaymentSuccess,
      handlePaymentFailure,

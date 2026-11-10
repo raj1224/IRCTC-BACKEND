@@ -1,5 +1,5 @@
-const { redis } = require('../config/redis');
-const logger = require('../config/logger');
+import { redis } from '../config/redis.js';
+import logger from '../config/logger.js';
 
 /**
  * Redis distributed locking using Lua scripts for atomicity.
@@ -157,7 +157,7 @@ async function forceReleaseSeatLocks(scheduleId, seatIds, fromSeq, toSeq) {
      }
 }
 
-module.exports = {
+export default {
      acquireSeatLocks,
      releaseSeatLocks,
      forceReleaseSeatLocks,

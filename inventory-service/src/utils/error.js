@@ -49,7 +49,7 @@ class InternalServerError extends AppError {
      }
 }
 
-module.exports = {
+export default {
      AppError,
      BadRequestError,
      UnauthorizedError,

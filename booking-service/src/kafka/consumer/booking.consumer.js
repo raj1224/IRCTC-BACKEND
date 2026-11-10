@@ -1,9 +1,9 @@
-const { consumer } = require('../../config/kafka');
-const { producer, connectProducer } = require('../../config/kafka');
-const logger = require('../../config/logger');
-const { KAFKA_TOPICS } = require('../../../../shared/constants/kafka-topics');
-const { withDLQ } = require('../../../../shared/utils/dlqHandler');
-const bookingService = require('../../services/booking.service');
+import { consumer } from '../../config/kafka.js';
+import { producer, connectProducer } from '../../config/kafka.js';
+import logger from '../../config/logger.js';
+import { KAFKA_TOPICS } from '../../../../shared/constants/kafka-topics.js';
+import { withDLQ } from '../../../../shared/utils/dlqHandler.js';
+import bookingService from '../../services/booking.service';
 
 const start = async () => {
      await consumer.connect();
@@ -58,4 +58,4 @@ const start = async () => {
      logger.info('Booking consumer running');
 };
 
-module.exports = { start };
+export default { start };

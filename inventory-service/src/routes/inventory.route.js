@@ -1,15 +1,15 @@
-const express = require('express');
-const { getUserContext } = require('../middlewares/getUserContext.middleware');
-const { internalAuth } = require('../middlewares/internalAuth.middleware');
-const { config } = require('../config');
-const {
+import express from 'express';
+import { getUserContext } from '../middlewares/getUserContext.middleware';
+import { internalAuth } from '../middlewares/internalAuth.middleware';
+import { config } from '../config/index.js';
+import {
      getScheduleAvailability,
      getScheduleSeats,
      lockSeats,
      unlockSeats,
      confirmSeats,
      cancelBooking,
-} = require('../controllers/inventory.controller');
+} from '../controllers/inventory.controller';
 
 const router = express.Router();
 
@@ -35,4 +35,4 @@ router.post('/seats/unlock', internalAuth, unlockSeats);
 router.post('/seats/confirm', internalAuth, confirmSeats);
 router.post('/seats/cancel-booking', internalAuth, cancelBooking);
 
-module.exports = router;
+export default router;

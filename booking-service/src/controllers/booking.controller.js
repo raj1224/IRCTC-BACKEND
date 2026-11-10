@@ -1,8 +1,8 @@
-const asyncHandler = require('../utils/asyncHandler');
-const { BadRequestError } = require('../utils/error');
-const bookingService = require('../services/booking.service');
+import asyncHandler from '../utils/asyncHandler.js';
+import { BadRequestError } from '../utils/error.js';
+import bookingService from '../services/booking.service';
 
-exports.createBooking = asyncHandler(async (req, res) => {
+export const createBooking = asyncHandler(async (req, res) => {
      const userId = req.user.id;
      const { scheduleId, seatIds, passengers, idempotencyKey, fromStationId, toStationId, fromSeq, toSeq } = req.body; // --- SEGMENT BOOKING: added segment params
 
@@ -19,7 +19,7 @@ exports.createBooking = asyncHandler(async (req, res) => {
      res.status(201).json({ success: true, data: result });
 });
 
-exports.getBooking = asyncHandler(async (req, res) => {
+export const getBooking = asyncHandler(async (req, res) => {
      const userId = req.user.id;
      const { bookingId } = req.params;
 
@@ -28,7 +28,7 @@ exports.getBooking = asyncHandler(async (req, res) => {
      res.status(200).json({ success: true, data: result });
 });
 
-exports.getUserBookings = asyncHandler(async (req, res) => {
+export const getUserBookings = asyncHandler(async (req, res) => {
      const userId = req.user.id;
      const { status, page, limit } = req.query;
 
@@ -41,7 +41,7 @@ exports.getUserBookings = asyncHandler(async (req, res) => {
      res.status(200).json({ success: true, data: result });
 });
 
-exports.verifyPayment = asyncHandler(async (req, res) => {
+export const verifyPayment = asyncHandler(async (req, res) => {
      const userId = req.user.id;
      const { bookingId } = req.params;
      const { razorpayPaymentId, razorpaySignature } = req.body;
@@ -55,7 +55,7 @@ exports.verifyPayment = asyncHandler(async (req, res) => {
      res.status(200).json({ success: true, data: result });
 });
 
-exports.cancelBooking = asyncHandler(async (req, res) => {
+export const cancelBooking = asyncHandler(async (req, res) => {
      const userId = req.user.id;
      const { bookingId } = req.params;
 

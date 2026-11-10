@@ -1,6 +1,6 @@
-const express = require('express');
-const { createTrain, createRoute, getAllTrains, getTrainById } = require('../controllers/train.controller');
-const { getUserContext } = require('../middlewares/getUserContext.middleware');
+import express from 'express';
+import { createTrain, createRoute, getAllTrains, getTrainById } from '../controllers/train.controller';
+import { getUserContext } from '../middlewares/getUserContext.middleware';
 
 const router = express.Router();
 
@@ -9,4 +9,4 @@ router.get("/train", getUserContext, getAllTrains);
 router.get("/train/:trainId", getUserContext, getTrainById);
 router.post("/route", getUserContext, createRoute);
 
-module.exports = router;
+export default router;

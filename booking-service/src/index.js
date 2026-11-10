@@ -1,20 +1,20 @@
-require('dotenv').config();
-const express = require('express');
-const helmet = require('helmet');
-const logger = require('./config/logger');
-const { config } = require('./config');
-const cookieParser = require('cookie-parser');
+import 'dotenv/config';
+import express from 'express';
+import helmet from 'helmet';
+import logger from './config/logger.js';
+import { config } from './config/index.js';
+import cookieParser from 'cookie-parser';
 
-const { corsMiddleware } = require('./middlewares/cors.middleware');
-const errorHandler = require('./middlewares/error.middleware');
-const { reqLogger } = require('./middlewares/req.middleware');
-const { disconnectAll } = require('./config/kafka');
-const { RedisClient } = require('./config/redis');
+import { corsMiddleware } from './middlewares/cors.middleware';
+import errorHandler from './middlewares/error.middleware';
+import { reqLogger } from './middlewares/req.middleware';
+import { disconnectAll } from './config/kafka.js';
+import { RedisClient } from './config/redis.js';
 
-const prisma = require('./config/prisma');
-const bookingRoutes = require('./routes/booking.route');
-const bookingConsumer = require('./kafka/consumer/booking.consumer');
-const { startBookingExpiryJob, stopBookingExpiryJob } = require('./utils/bookingExpiry');
+import prisma from './config/prisma.js';
+import bookingRoutes from './routes/booking.route';
+import bookingConsumer from './kafka/consumer/booking.consumer';
+import { startBookingExpiryJob, stopBookingExpiryJob } from './utils/bookingExpiry.js';
 
 const app = express();
 
@@ -95,4 +95,4 @@ const startServer = async () => {
 
 startServer();
 
-module.exports = app;
+export default app;

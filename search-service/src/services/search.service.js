@@ -1,5 +1,5 @@
-const { esClient, TRAIN_INDEX, STATION_INDEX } = require('../config/elasticsearch');
-const logger = require('../config/logger');
+import { esClient, TRAIN_INDEX, STATION_INDEX } from '../config/elasticsearch.js';
+import logger from '../config/logger.js';
 
 // ═══════════════════════════════════════════════════
 //  INDEX OPERATIONS (called by Kafka consumer)
@@ -381,7 +381,7 @@ const getAllTrains = async () => {
      return result.hits.hits.map((h) => h._source);
 };
 
-module.exports = {
+export default {
      indexStation,
      indexTrainRoute,
      indexSchedule,

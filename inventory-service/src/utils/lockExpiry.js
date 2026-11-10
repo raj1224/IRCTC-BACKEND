@@ -1,7 +1,7 @@
-const prisma = require('../config/prisma');
-const logger = require('../config/logger');
-const { config } = require('../config');
-const { recountAndPublish, recomputeSegmentSeatStatuses } = require('../services/inventory.service');
+import prisma from '../config/prisma.js';
+import logger from '../config/logger.js';
+import { config } from '../config/index.js';
+import { recountAndPublish, recomputeSegmentSeatStatuses } from '../services/inventory.service';
 
 let intervalHandle = null;
 
@@ -151,4 +151,4 @@ function stopLockExpiryJob() {
      }
 }
 
-module.exports = { startLockExpiryJob, stopLockExpiryJob };
+export default { startLockExpiryJob, stopLockExpiryJob };

@@ -1,6 +1,6 @@
-const { producer, connectProducer } = require('../../config/kafka');
-const logger = require('../../config/logger');
-const { KAFKA_TOPICS } = require('../../../../shared/constants/kafka-topics');
+import { producer, connectProducer } from '../../config/kafka.js';
+import logger from '../../config/logger.js';
+import { KAFKA_TOPICS } from '../../../../shared/constants/kafka-topics.js';
 
 const MAX_PUBLISH_RETRIES = 3;
 const RETRY_DELAY_MS = 500;
@@ -80,4 +80,4 @@ class BookingProducer {
      }
 }
 
-module.exports = new BookingProducer();
+export default new BookingProducer();

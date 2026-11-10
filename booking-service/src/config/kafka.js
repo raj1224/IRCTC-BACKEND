@@ -1,6 +1,6 @@
-const { Kafka, logLevel } = require('kafkajs');
-const logger = require('./logger');
-const { config } = require('.');
+import { Kafka, logLevel } from 'kafkajs';
+import logger from './logger.js';
+import { config } from './index.js';
 
 const kafka = new Kafka({
      clientId: config.KAFKA_CLIENT_ID,
@@ -59,4 +59,4 @@ const disconnectAll = async () => {
      await disconnectConsumer();
 };
 
-module.exports = { kafka, producer, consumer, connectProducer, disconnectProducer, disconnectConsumer, disconnectAll };
+export default { kafka, producer, consumer, connectProducer, disconnectProducer, disconnectConsumer, disconnectAll };

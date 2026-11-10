@@ -1,12 +1,12 @@
-const prisma = require('../config/prisma');
-const logger = require('../config/logger');
-const { config } = require('../config');
-const { redis } = require('../config/redis');
-const { forceReleaseSeatLocks } = require('./distributedLock');
-const { compensateAll } = require('../services/saga.service');
-const { userClient } = require('../services/userClient');
-const bookingService = require('../services/booking.service');
-const bookingProducer = require('../kafka/producer/booking.producer');
+import prisma from '../config/prisma.js';
+import logger from '../config/logger.js';
+import { config } from '../config/index.js';
+import { redis } from '../config/redis.js';
+import { forceReleaseSeatLocks } from './distributedLock.js';
+import { compensateAll } from '../services/saga.service';
+import { userClient } from '../services/userClient.js';
+import bookingService from '../services/booking.service';
+import bookingProducer from '../kafka/producer/booking.producer';
 
 const fetchUserForNotification = async (userId) => {
      try {
@@ -205,4 +205,4 @@ function stopBookingExpiryJob() {
      }
 }
 
-module.exports = { startBookingExpiryJob, stopBookingExpiryJob };
+export default { startBookingExpiryJob, stopBookingExpiryJob };

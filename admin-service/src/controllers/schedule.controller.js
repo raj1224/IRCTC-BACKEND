@@ -1,8 +1,8 @@
-const asyncHandler = require("../utils/asyncHandler");
-const {BadRequestError} = require('../utils/error');
-const scheduleService = require('../services/schedule.service');
+import asyncHandler from '../utils/asyncHandler.js';
+import {BadRequestError} from '../utils/error.js';
+import scheduleService from '../services/schedule.service';
 
-exports.createSchedule = asyncHandler(async(req, res) =>{
+export const createSchedule = asyncHandler(async(req, res) =>{
      const {trainId, departureDate} = req.body;
 
      if(!trainId || !departureDate){
@@ -18,7 +18,7 @@ exports.createSchedule = asyncHandler(async(req, res) =>{
 })
 
 
-exports.cancelSchedule = asyncHandler(async(req, res) =>{
+export const cancelSchedule = asyncHandler(async(req, res) =>{
      const {scheduleId} = req.params;
      if(!scheduleId){
           throw new BadRequestError("ScheduleId is missing");
@@ -32,7 +32,7 @@ exports.cancelSchedule = asyncHandler(async(req, res) =>{
      })
 })
 
-exports.getAllSchedules = asyncHandler(async(req, res) =>{
+export const getAllSchedules = asyncHandler(async(req, res) =>{
      const schedules = await scheduleService.getAllSchedules(req.query);
      res.status(200).json({ success: true, data: schedules });
 });

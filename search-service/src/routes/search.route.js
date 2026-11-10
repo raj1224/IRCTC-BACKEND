@@ -1,5 +1,5 @@
-const { Router } = require('express');
-const ctrl = require('../controllers/search.controller');
+import { Router } from 'express';
+import ctrl from '../controllers/search.controller';
 const router = Router();
 
 // GET /search/trains?from=Delhi&to=Mumbai&date=2025-07-15
@@ -12,4 +12,4 @@ router.get('/autocomplete', ctrl.autocomplete);
 router.get('/debug/stations', ctrl.debugStations);
 router.get('/debug/trains', ctrl.debugTrains);
 
-module.exports = router;
+export default router;
