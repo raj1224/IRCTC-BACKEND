@@ -6,13 +6,13 @@ import { config } from './config/index.js';
 import logger from './config/logger.js';
 
 import authRoutes from './routes/auth.route.js';
-// import userRoutes from './routes/user.route.js';
+import userRoutes from './routes/user.route.js';
 
 // IMPORT MIDDLEWARES
 import { corsMiddleware } from './middlewares/cors.middleware.js';
 import errorHandler from './middlewares/error.middleware.js';
 import { reqLogger } from './middlewares/req.middleware.js';
-// import { disconnectProducer } from './config/kafka.js';
+import { disconnectProducer } from './config/kafka.js';
 
 const app = express();
 
@@ -24,8 +24,8 @@ app.use(helmet({
 app.use(reqLogger);
 app.use(express.json());
 app.use(cookieParser());
-app.use("/api/v1/auth", authRoutes);
-// app.use("/user", userRoutes);
+app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 
 app.get("/", (req, res) => {
      res.send("Hello from index.js of user-service");
