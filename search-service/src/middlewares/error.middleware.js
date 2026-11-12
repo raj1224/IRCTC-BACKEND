@@ -1,5 +1,5 @@
 // middlewares/error.middleware.js
-import { AppError } from '../utils/error.js';
+import  {AppError}  from '../utils/error.js';
 import {config} from '../config/index.js';
 import logger from '../config/logger.js';
 

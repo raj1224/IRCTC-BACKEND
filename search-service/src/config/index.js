@@ -11,4 +11,4 @@ const config = {
      ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS,
 }
 
-export default { config };
+export  { config };

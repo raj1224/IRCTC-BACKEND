@@ -1,6 +1,6 @@
 import { Kafka, logLevel } from 'kafkajs';
 import logger from './logger.js';
-import { config } from './index.js';
+import  {config}  from './index.js';
 
 const kafka = new Kafka({
      clientId: config.KAFKA_CLIENT_ID,
@@ -40,4 +40,4 @@ const disconnectAll = async () => {
      logger.info('Kafka consumer disconnected');
 };
 
-export default { kafka, consumer, producer, connectProducer, disconnectAll };
+export  { kafka, consumer, producer, connectProducer, disconnectAll };

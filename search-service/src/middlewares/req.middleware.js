@@ -14,6 +14,6 @@ const reqLogger = (req, res, next) => {
      next();
 };
 
-export default {
+export  {
      reqLogger,
 };

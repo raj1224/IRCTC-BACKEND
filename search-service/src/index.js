@@ -1,18 +1,24 @@
 import 'dotenv/config';
-import path from 'path';
+// import path from 'path';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
-import { config } from './config/index.js';
+import {config}  from './config/index.js';
 import logger from './config/logger.js';
 import { initIndices, recreateIndices } from './config/elasticsearch.js';
 
-import { corsMiddleware } from './middlewares/cors.middleware';
-import errorHandler from './middlewares/error.middleware';
-import { reqLogger } from './middlewares/req.middleware';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import searchRoutes from './routes/search.route';
-import searchConsumer from './kafka/consumer/search.consumer';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+import { corsMiddleware } from './middlewares/cors.middleware.js';
+import errorHandler from './middlewares/error.middleware.js';
+import { reqLogger } from './middlewares/req.middleware.js';
+
+import searchRoutes from './routes/search.route.js';
+import searchConsumer from './kafka/consumer/search.consumer.js';
 import { disconnectAll } from './config/kafka.js';
 
 const app = express();

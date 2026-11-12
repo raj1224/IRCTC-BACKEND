@@ -1,5 +1,5 @@
 import { consumer, producer, connectProducer } from '../../config/kafka.js';
-import searchService from '../../services/search.service';
+import searchService from '../../services/search.service.js';
 import logger from '../../config/logger.js';
 import { KAFKA_TOPICS } from '../../../../shared/constants/kafka-topics.js';
 import { withDLQ } from '../../../../shared/utils/dlqHandler.js';

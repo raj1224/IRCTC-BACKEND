@@ -1,6 +1,6 @@
 import asyncHandler from '../utils/asyncHandler.js';
 import { BadRequestError } from '../utils/error.js';
-import searchService from '../services/search.service';
+import searchService from '../services/search.service.js';
 
 export const searchTrains = asyncHandler(async (req, res) => {
      const { from, to, date } = req.query;

@@ -1,5 +1,5 @@
-import { Client } from '@elastic/elasticsearch';
-import { config } from './index.js';
+ import { Client } from '@elastic/elasticsearch';
+import  {config}  from './index.js';
 import logger from './logger.js';
 
 const esClient = new Client({ node: config.ELASTICSEARCH_URL });
@@ -120,4 +120,4 @@ const recreateIndices = async () => {
      logger.info('All indices recreated');
 };
 
-export default { esClient, STATION_INDEX, TRAIN_INDEX, ROUTE_INDEX, SCHEDULE_INDEX, initIndices, recreateIndices };
+export  { esClient, STATION_INDEX, TRAIN_INDEX, ROUTE_INDEX, SCHEDULE_INDEX, initIndices, recreateIndices };
