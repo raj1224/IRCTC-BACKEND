@@ -1,7 +1,7 @@
 import prisma from '../config/prisma.js';
 import { ConflictError, NotFoundError } from '../utils/error.js';
 import logger from '../config/logger.js';
-import adminProducer from '../kafka/producer/admin.producer';
+import adminProducer from '../kafka/producer/admin.producer.js';
 
 const createStation = async (data) => {
      const existing = await prisma.station.findUnique({

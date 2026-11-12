@@ -40,4 +40,4 @@ const disconnectProducer = async () => {
      }
 };
 
-export default { kafka, producer, connectProducer, disconnectProducer };
+export { kafka, producer, connectProducer, disconnectProducer };

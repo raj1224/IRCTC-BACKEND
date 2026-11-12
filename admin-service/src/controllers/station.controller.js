@@ -1,6 +1,6 @@
 import asyncHandler from '../utils/asyncHandler.js';
 import { BadRequestError } from '../utils/error.js';
-import stationService from '../services/station.service';
+import stationService from '../services/station.service.js';
 
 
 export const createStation = asyncHandler(async (req, res) => {

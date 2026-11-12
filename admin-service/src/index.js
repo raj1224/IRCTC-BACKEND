@@ -5,14 +5,14 @@ import logger from './config/logger.js';
 import { config } from './config/index.js';
 import cookieParser from 'cookie-parser';
 // Routes
-import stationRoutes from './routes/station.route';
-import trainRoutes from './routes/train.route';
-import scheduleRoutes from './routes/schedule.route';
+import stationRoutes from './routes/station.route.js';
+// import trainRoutes from './routes/train.route.js';
+// import scheduleRoutes from './routes/schedule.route.js';
 
 // Middlewares
-import { corsMiddleware } from './middlewares/cors.middleware';
-import errorHandler from './middlewares/error.middleware';
-import { reqLogger } from './middlewares/req.middleware';
+import { corsMiddleware } from './middlewares/cors.middleware.js';
+import errorHandler from './middlewares/error.middleware.js';
+import { reqLogger } from './middlewares/req.middleware.js';
 import { disconnectProducer } from './config/kafka.js';
 
 const app = express();
@@ -51,8 +51,8 @@ app.get('/health', (req, res) => {
 
 // API Routes - All protected by auth middleware
 app.use("/stations", stationRoutes);
-app.use("/trains", trainRoutes);
-app.use("/schedules", scheduleRoutes);
+// app.use("/trains", trainRoutes);
+// app.use("/schedules", scheduleRoutes);
 
 // Error handler (must be last)
 app.use(errorHandler);

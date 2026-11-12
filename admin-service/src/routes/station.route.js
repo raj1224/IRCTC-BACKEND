@@ -1,8 +1,8 @@
 import express from 'express';
-import { createStation, updateStation, deleteStation, getAllStations, getStationById, getStationByIdInternal } from '../controllers/station.controller';
+import { createStation, getAllStations, getStationById, getStationByIdInternal } from '../controllers/station.controller.js';
 
-import {getUserContext} from '../middlewares/getUserContext.middleware';
-import { internalAuth } from '../middlewares/internalAuth.middleware';
+import {getUserContext} from '../middlewares/getUserContext.middleware.js';
+import { internalAuth } from '../middlewares/internalAuth.middleware.js';
 
 const router = express.Router();
 
