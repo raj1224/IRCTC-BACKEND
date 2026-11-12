@@ -6,7 +6,7 @@ import { config } from './config/index.js';
 import cookieParser from 'cookie-parser';
 // Routes
 import stationRoutes from './routes/station.route.js';
-// import trainRoutes from './routes/train.route.js';
+import trainRoutes from './routes/train.route.js';
 // import scheduleRoutes from './routes/schedule.route.js';
 
 // Middlewares
@@ -51,7 +51,7 @@ app.get('/health', (req, res) => {
 
 // API Routes - All protected by auth middleware
 app.use("/stations", stationRoutes);
-// app.use("/trains", trainRoutes);
+app.use("/trains", trainRoutes);
 // app.use("/schedules", scheduleRoutes);
 
 // Error handler (must be last)

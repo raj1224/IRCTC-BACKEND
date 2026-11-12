@@ -1,6 +1,6 @@
 import express from 'express';
-import { createTrain, createRoute, getAllTrains, getTrainById } from '../controllers/train.controller';
-import { getUserContext } from '../middlewares/getUserContext.middleware';
+import { createTrain, createRoute, getAllTrains, getTrainById } from '../controllers/train.controller.js';
+import { getUserContext } from '../middlewares/getUserContext.middleware.js';
 
 const router = express.Router();
 

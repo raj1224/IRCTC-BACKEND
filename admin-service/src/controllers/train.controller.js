@@ -1,6 +1,6 @@
 import asyncHandler from '../utils/asyncHandler.js';
 import { BadRequestError } from '../utils/error.js';
-import trainService from '../services/train.service';
+import trainService from '../services/train.service.js';
 
 
 export const createTrain = asyncHandler(async(req, res) =>{

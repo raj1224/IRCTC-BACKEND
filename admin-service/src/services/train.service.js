@@ -1,7 +1,7 @@
 import prisma from '../config/prisma.js';
 import { BadRequestError, ConflictError, NotFoundError } from '../utils/error.js';
 
-import adminProducer from '../kafka/producer/admin.producer';
+import adminProducer from '../kafka/producer/admin.producer.js';
 import logger from '../config/logger.js';
 
 const createTrain = async (data) => {
@@ -11,9 +11,20 @@ const createTrain = async (data) => {
      )
      if (existing) {
           throw new ConflictError("Train with this number already exists");
+          
      }
 
+     if (!Array.isArray(seats) || seats.length === 0) {
+    throw new BadRequestError("At least one seat is required");
+}
+
+if (seats.some(seat => !Number.isInteger(seat.seatNumber))) {
+    throw new BadRequestError("Every seat must have a valid integer seatNumber");
+}
+
      const seatNumbers = seats.map((s) => s.seatNumber);
+
+     
 
      if (new Set(seatNumbers).size !== seatNumbers.length) {
           throw new BadRequestError('Duplicate seat numbers found');
