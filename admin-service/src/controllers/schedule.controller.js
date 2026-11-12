@@ -1,6 +1,6 @@
 import asyncHandler from '../utils/asyncHandler.js';
 import {BadRequestError} from '../utils/error.js';
-import scheduleService from '../services/schedule.service';
+import scheduleService from '../services/schedule.service.js';
 
 export const createSchedule = asyncHandler(async(req, res) =>{
      const {trainId, departureDate} = req.body;

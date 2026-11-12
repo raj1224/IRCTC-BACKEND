@@ -1,5 +1,5 @@
 import { BadRequestError, ConflictError, NotFoundError } from '../utils/error.js';
-import adminProducer from '../kafka/producer/admin.producer';
+import adminProducer from '../kafka/producer/admin.producer.js';
 import logger from '../config/logger.js';
 import prisma from '../config/prisma.js';
 
