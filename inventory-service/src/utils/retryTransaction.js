@@ -22,4 +22,4 @@ async function retryTransaction(fn, maxRetries = 3) {
      }
 }
 
-export default { retryTransaction };
+export  { retryTransaction };

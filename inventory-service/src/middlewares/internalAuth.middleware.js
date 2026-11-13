@@ -15,4 +15,4 @@ const internalAuth = (req, res, next) => {
      next();
 };
 
-export default { internalAuth };
+export  { internalAuth };

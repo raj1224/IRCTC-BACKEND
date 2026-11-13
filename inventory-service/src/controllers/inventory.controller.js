@@ -1,6 +1,6 @@
 import asyncHandler from '../utils/asyncHandler.js';
 import { BadRequestError } from '../utils/error.js';
-import inventoryService from '../services/inventory.service';
+import inventoryService from '../services/inventory.service.js';
 
 export const getScheduleAvailability = asyncHandler(async (req, res) => {
      const { scheduleId } = req.params;

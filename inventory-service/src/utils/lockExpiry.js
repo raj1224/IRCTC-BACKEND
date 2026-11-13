@@ -1,7 +1,7 @@
 import prisma from '../config/prisma.js';
 import logger from '../config/logger.js';
 import { config } from '../config/index.js';
-import { recountAndPublish, recomputeSegmentSeatStatuses } from '../services/inventory.service';
+import inventoryService from '../services/inventory.service.js';
 
 let intervalHandle = null;
 
@@ -68,9 +68,9 @@ async function cleanExpiredLocks() {
                          // Recompute each seat's summary status from remaining segment locks.
                          // This correctly handles all transitions: LOCKED→AVAILABLE, LOCKED→BOOKED, etc.
                          await prisma.$transaction(async (tx) => {
-                              await recomputeSegmentSeatStatuses(tx, scheduleId, [...seatIdSet]);
+                              await inventoryService.recomputeSegmentSeatStatuses(tx, scheduleId, [...seatIdSet]);
                          });
-                         await recountAndPublish(scheduleId);
+                         await inventoryService.recountAndPublish(scheduleId);
                     }
 
                     logger.info(`Cleaned ${expiredSegmentLocks.length} expired segment lock(s)`);
@@ -119,7 +119,7 @@ async function cleanExpiredLocks() {
                     `;
 
                     // Recount from actual seat rows to prevent counter drift
-                    await recountAndPublish(scheduleId);
+                    await inventoryService.recountAndPublish(scheduleId);
 
                     logger.info(`Released ${seats.length} expired lock(s) for schedule ${scheduleId}`);
                } catch (err) {
@@ -151,4 +151,4 @@ function stopLockExpiryJob() {
      }
 }
 
-export default { startLockExpiryJob, stopLockExpiryJob };
+export  { startLockExpiryJob, stopLockExpiryJob };

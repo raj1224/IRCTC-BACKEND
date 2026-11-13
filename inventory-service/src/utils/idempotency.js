@@ -63,4 +63,4 @@ const recordIdempotency = async (tx, eventKey, response) => {
      await tx.idempotencyRecord.create({ data: { eventKey, response } });
 };
 
-export default { withIdempotency, recordIdempotency };
+export  { withIdempotency, recordIdempotency };

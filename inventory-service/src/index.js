@@ -5,14 +5,14 @@ import logger from './config/logger.js';
 import { config } from './config/index.js';
 import cookieParser from 'cookie-parser';
 
-import { corsMiddleware } from './middlewares/cors.middleware';
-import errorHandler from './middlewares/error.middleware';
-import { reqLogger } from './middlewares/req.middleware';
+import { corsMiddleware } from './middlewares/cors.middleware.js';
+import errorHandler from './middlewares/error.middleware.js';
+import { reqLogger } from './middlewares/req.middleware.js';
 import { disconnectAll } from './config/kafka.js';
 
 import prisma from './config/prisma.js';
-import inventoryRoutes from './routes/inventory.route';
-import inventoryConsumer from './kafka/consumer/inventory.consumer';
+import inventoryRoutes from './routes/inventory.route.js';
+import inventoryConsumer from './kafka/consumer/inventory.consumer.js';
 import { startLockExpiryJob, stopLockExpiryJob } from './utils/lockExpiry.js';
 
 const app = express();

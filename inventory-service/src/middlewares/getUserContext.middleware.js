@@ -13,4 +13,4 @@ function getUserContext(req, res, next) {
      next();
 }
 
-export default { getUserContext };
+export  { getUserContext };

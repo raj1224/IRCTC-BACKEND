@@ -1,6 +1,6 @@
 import express from 'express';
-import { getUserContext } from '../middlewares/getUserContext.middleware';
-import { internalAuth } from '../middlewares/internalAuth.middleware';
+import { getUserContext } from '../middlewares/getUserContext.middleware.js';
+import { internalAuth } from '../middlewares/internalAuth.middleware.js';
 import { config } from '../config/index.js';
 import {
      getScheduleAvailability,
@@ -9,7 +9,7 @@ import {
      unlockSeats,
      confirmSeats,
      cancelBooking,
-} from '../controllers/inventory.controller';
+} from '../controllers/inventory.controller.js';
 
 const router = express.Router();
 

@@ -1,6 +1,6 @@
 import prisma from '../config/prisma.js';
 import logger from '../config/logger.js';
-import inventoryProducer from '../kafka/producer/inventory.producer';
+// import inventoryProducer from '../kafka/producer/inventory.producer.js';
 import { retryTransaction } from '../utils/retryTransaction.js';
 import { withIdempotency, recordIdempotency } from '../utils/idempotency.js';
 import { BadRequestError, NotFoundError, ConflictError, ForbiddenError } from '../utils/error.js';
@@ -851,7 +851,7 @@ const recountAndPublish = async (scheduleId) => {
      return { available, locked, booked };
 };
 
-export default {
+const inventoryService = {
      initializeInventory,
      cancelScheduleInventory,
      getAvailability,
@@ -860,6 +860,9 @@ export default {
      unlockSeats,
      confirmSeats,
      cancelBooking,
-     recountAndPublish,
      recomputeSegmentSeatStatuses,
+     recountScheduleAggregates,
+     recountAndPublish,
 };
+
+export default inventoryService;

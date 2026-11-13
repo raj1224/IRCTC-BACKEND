@@ -14,4 +14,4 @@ const config = {
      INTERNAL_SERVICE_KEY: process.env.INTERNAL_SERVICE_KEY,
 }
 
-export default { config };
+export  { config };
