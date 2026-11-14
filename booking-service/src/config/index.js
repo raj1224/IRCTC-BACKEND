@@ -30,4 +30,4 @@ const config = {
      STUCK_BOOKING_THRESHOLD_MS: parseInt(process.env.STUCK_BOOKING_THRESHOLD_MS || '120000', 10),
 }
 
-export default { config };
+export  { config };

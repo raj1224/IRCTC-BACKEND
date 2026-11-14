@@ -1,6 +1,6 @@
 import asyncHandler from '../utils/asyncHandler.js';
 import { BadRequestError } from '../utils/error.js';
-import bookingService from '../services/booking.service';
+import bookingService from '../services/booking.service.js';
 
 export const createBooking = asyncHandler(async (req, res) => {
      const userId = req.user.id;

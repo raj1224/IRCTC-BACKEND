@@ -59,4 +59,4 @@ const disconnectAll = async () => {
      await disconnectConsumer();
 };
 
-export default { kafka, producer, consumer, connectProducer, disconnectProducer, disconnectConsumer, disconnectAll };
+export  { kafka, producer, consumer, connectProducer, disconnectProducer, disconnectConsumer, disconnectAll };

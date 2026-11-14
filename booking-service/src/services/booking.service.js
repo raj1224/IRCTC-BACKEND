@@ -6,8 +6,8 @@ import { paymentClient, extractError as extractPaymentError } from './paymentCli
 import { userClient } from './userClient.js';
 import { stationClient } from './stationClient.js';
 import { acquireSeatLocks, releaseSeatLocks, forceReleaseSeatLocks } from '../utils/distributedLock.js';
-import saga from './saga.service';
-import bookingProducer from '../kafka/producer/booking.producer';
+import saga from './saga.service.js';
+import bookingProducer from '../kafka/producer/booking.producer.js';
 import { BadRequestError, NotFoundError, ConflictError, StaleStateError } from '../utils/error.js';
 
 // ─── Optimistic Lock Helper (CAS — Compare-And-Swap) ────────────────────────

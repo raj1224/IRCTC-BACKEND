@@ -5,15 +5,15 @@ import logger from './config/logger.js';
 import { config } from './config/index.js';
 import cookieParser from 'cookie-parser';
 
-import { corsMiddleware } from './middlewares/cors.middleware';
-import errorHandler from './middlewares/error.middleware';
-import { reqLogger } from './middlewares/req.middleware';
+import { corsMiddleware } from './middlewares/cors.middleware.js';
+import errorHandler from './middlewares/error.middleware.js';
+import { reqLogger } from './middlewares/req.middleware.js';
 import { disconnectAll } from './config/kafka.js';
-import { RedisClient } from './config/redis.js';
+import redis from './config/redis.js';
 
 import prisma from './config/prisma.js';
-import bookingRoutes from './routes/booking.route';
-import bookingConsumer from './kafka/consumer/booking.consumer';
+import bookingRoutes from './routes/booking.route.js';
+import bookingConsumer from './kafka/consumer/booking.consumer.js';
 import { startBookingExpiryJob, stopBookingExpiryJob } from './utils/bookingExpiry.js';
 
 const app = express();
@@ -42,7 +42,7 @@ app.get('/health', async (req, res) => {
           logger.error('Health check: DB unreachable', { error: e.message });
      }
 
-     const redisHealthy = RedisClient.isReady();
+     const redisHealthy = redis.RedisClient.isReady();
      const healthy = dbHealthy && redisHealthy;
 
      res.status(healthy ? 200 : 503).json({
@@ -78,7 +78,7 @@ const startServer = async () => {
 
                server.close(async () => {
                     await disconnectAll();
-                    await RedisClient.closeConnection();
+                    await redis.RedisClient.closeConnection();
                     logger.info('Server closed');
                     process.exit(0);
                });

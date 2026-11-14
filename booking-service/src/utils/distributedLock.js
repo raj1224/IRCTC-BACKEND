@@ -1,4 +1,4 @@
-import { redis } from '../config/redis.js';
+import  redis  from '../config/redis.js';
 import logger from '../config/logger.js';
 
 /**
@@ -157,7 +157,7 @@ async function forceReleaseSeatLocks(scheduleId, seatIds, fromSeq, toSeq) {
      }
 }
 
-export default {
+export  {
      acquireSeatLocks,
      releaseSeatLocks,
      forceReleaseSeatLocks,

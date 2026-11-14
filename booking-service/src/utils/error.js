@@ -55,7 +55,7 @@ class StaleStateError extends ConflictError {
      }
 }
 
-export default {
+export  {
      AppError,
      BadRequestError,
      UnauthorizedError,

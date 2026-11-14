@@ -1,12 +1,12 @@
 import prisma from '../config/prisma.js';
 import logger from '../config/logger.js';
 import { config } from '../config/index.js';
-import { redis } from '../config/redis.js';
+import redis from '../config/redis.js';
 import { forceReleaseSeatLocks } from './distributedLock.js';
-import { compensateAll } from '../services/saga.service';
+import saga from '../services/saga.service.js';
 import { userClient } from '../services/userClient.js';
-import bookingService from '../services/booking.service';
-import bookingProducer from '../kafka/producer/booking.producer';
+import bookingService from '../services/booking.service.js';
+import bookingProducer from '../kafka/producer/booking.producer.js';
 
 const fetchUserForNotification = async (userId) => {
      try {
@@ -94,7 +94,7 @@ async function cleanExpiredBookings() {
                     }
 
                     // Compensate all completed saga steps
-                    await compensateAll(booking, seatIds);
+                    await saga.compensateAll(booking, seatIds);
 
                     // Release Redis locks (segment-aware)
                     await forceReleaseSeatLocks(booking.scheduleId, seatIds, booking.fromSeq, booking.toSeq);
@@ -205,4 +205,4 @@ function stopBookingExpiryJob() {
      }
 }
 
-export default { startBookingExpiryJob, stopBookingExpiryJob };
+export  { startBookingExpiryJob, stopBookingExpiryJob };

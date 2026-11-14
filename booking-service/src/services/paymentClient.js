@@ -90,4 +90,4 @@ const paymentClient = {
      },
 };
 
-export default { paymentClient, extractError };
+export  { paymentClient, extractError };

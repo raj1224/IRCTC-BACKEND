@@ -42,4 +42,4 @@ const userClient = {
      },
 };
 
-export default { userClient };
+export  { userClient };

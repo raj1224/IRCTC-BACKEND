@@ -136,4 +136,4 @@ const inventoryClient = {
      },
 };
 
-export default { inventoryClient, extractError };
+export  { inventoryClient, extractError };

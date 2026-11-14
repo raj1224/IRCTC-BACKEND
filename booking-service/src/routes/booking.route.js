@@ -1,12 +1,12 @@
 import express from 'express';
-import { getUserContext } from '../middlewares/getUserContext.middleware';
+import { getUserContext } from '../middlewares/getUserContext.middleware.js';
 import {
      createBooking,
      getBooking,
      getUserBookings,
      cancelBooking,
      verifyPayment,
-} from '../controllers/booking.controller';
+} from '../controllers/booking.controller.js';
 
 const router = express.Router();
 
