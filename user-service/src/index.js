@@ -9,8 +9,8 @@ import authRoutes from './routes/auth.route.js';
 import userRoutes from './routes/user.route.js';
 
 // IMPORT MIDDLEWARES
-import { corsMiddleware } from './middlewares/cors.middleware.js';
 import errorHandler from './middlewares/error.middleware.js';
+import { corsMiddleware } from './middlewares/cors.middleware.js';
 import { reqLogger } from './middlewares/req.middleware.js';
 import { disconnectProducer } from './config/kafka.js';
 
@@ -18,8 +18,8 @@ const app = express();
 
 app.use(corsMiddleware);
 app.use(helmet({
-     // crossOriginOpenerPolicy: false,
-     // crossOriginEmbedderPolicy: false,
+     crossOriginOpenerPolicy: false,
+     crossOriginEmbedderPolicy: false,
 }));
 app.use(reqLogger);
 app.use(express.json());
